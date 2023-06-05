@@ -31,6 +31,7 @@
             this.Usernametextbox = new System.Windows.Forms.TextBox();
             this.Passwordtextbox = new System.Windows.Forms.TextBox();
             this.Loginbutton = new System.Windows.Forms.Button();
+            this.LoginPageTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Usernametextbox
@@ -51,7 +52,7 @@
             // 
             // Loginbutton
             // 
-            this.Loginbutton.Location = new System.Drawing.Point(272, 281);
+            this.Loginbutton.Location = new System.Drawing.Point(285, 262);
             this.Loginbutton.Name = "Loginbutton";
             this.Loginbutton.Size = new System.Drawing.Size(208, 47);
             this.Loginbutton.TabIndex = 2;
@@ -59,11 +60,22 @@
             this.Loginbutton.UseVisualStyleBackColor = true;
             this.Loginbutton.Click += new System.EventHandler(this.Loginbutton_Click);
             // 
+            // LoginPageTitle
+            // 
+            this.LoginPageTitle.AutoSize = true;
+            this.LoginPageTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginPageTitle.Location = new System.Drawing.Point(296, 61);
+            this.LoginPageTitle.Name = "LoginPageTitle";
+            this.LoginPageTitle.Size = new System.Drawing.Size(174, 67);
+            this.LoginPageTitle.TabIndex = 3;
+            this.LoginPageTitle.Text = "Login";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LoginPageTitle);
             this.Controls.Add(this.Loginbutton);
             this.Controls.Add(this.Passwordtextbox);
             this.Controls.Add(this.Usernametextbox);
@@ -79,6 +91,7 @@
         private System.Windows.Forms.TextBox Usernametextbox;
         private System.Windows.Forms.TextBox Passwordtextbox;
         private System.Windows.Forms.Button Loginbutton;
+        private System.Windows.Forms.Label LoginPageTitle;
     }
 }
 

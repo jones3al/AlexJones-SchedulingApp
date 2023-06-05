@@ -1,8 +1,5 @@
 ﻿using AlexJones_SchedulingApp.Database;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AlexJones_SchedulingApp
@@ -18,9 +15,9 @@ namespace AlexJones_SchedulingApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            DBconnection.StartConnection();
+            DBHelper.StartConnection();
             Application.Run(new LoginForm());
-            DBconnection.CloseConnection();
+            DBHelper.CloseConnection();
         }
     }
 }
