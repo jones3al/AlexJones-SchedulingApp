@@ -16,7 +16,7 @@ namespace AlexJones_SchedulingApp
             Application.SetCompatibleTextRenderingDefault(false);
             
             DBHelper.StartConnection();
-            Application.Run(new LoginForm());
+            Application.Run(new HomeForm());
             DBHelper.CloseConnection();
         }
     }
