@@ -3,16 +3,13 @@ using AlexJones_SchedulingApp.Exceptions;
 using AlexJones_SchedulingApp.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace AlexJones_SchedulingApp {
+namespace AlexJones_SchedulingApp
+{
     public partial class ModifyAppointmentForm : SaveableForm {
         private Appointment currentAppointment;
 

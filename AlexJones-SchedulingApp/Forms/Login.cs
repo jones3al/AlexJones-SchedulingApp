@@ -1,14 +1,10 @@
-﻿using AlexJones_SchedulingApp.Classes;
-using AlexJones_SchedulingApp.Database;
+﻿using AlexJones_SchedulingApp.Database;
 using AlexJones_SchedulingApp.Models;
 using AlexJones_SchedulingApp.Exceptions;
-using AlexJones_SchedulingApp.Properties;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Globalization;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace AlexJones_SchedulingApp
 {

@@ -1,10 +1,6 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Xml.Linq;
-using AlexJones_SchedulingApp.Models;
-using MySqlX.XDevAPI;
-using System;
 
 namespace AlexJones_SchedulingApp
 {

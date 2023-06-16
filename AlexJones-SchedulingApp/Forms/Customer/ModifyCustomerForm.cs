@@ -2,16 +2,12 @@
 using AlexJones_SchedulingApp.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace AlexJones_SchedulingApp {
+namespace AlexJones_SchedulingApp
+{
     public partial class ModifyCustomerForm : SaveableForm {
         private Customer currentCustomer;
 
@@ -113,16 +109,16 @@ namespace AlexJones_SchedulingApp {
                 checkCustomerActive.Checked, currentCustomer.DateCreated, currentCustomer.CreatedBy, DateTime.Now, formOwner.Username);
 
             // Created a string to apply an INSERT INTO SQL command
-            string insertValues = $"customerId = {newCustomer.CustomerId}, customerName = \"{newCustomer.Name}\", addressId = {newCustomer.AddressId}, active = {newCustomer.IsActive}, createDate = \"{newCustomer.DateCreated:yyyy-MM-dd HH:mm:ss}\", " +
+            string insertValues = $"customerId = {newCustomer.Id}, customerName = \"{newCustomer.Name}\", addressId = {newCustomer.AddressId}, active = {newCustomer.IsActive}, createDate = \"{newCustomer.DateCreated:yyyy-MM-dd HH:mm:ss}\", " +
                 $"createdBy = \"{newCustomer.CreatedBy}\", lastUpdate = \"{newCustomer.DateLastUpdated:yyyy-MM-dd HH:mm:ss}\", lastUpdateBy = \"{newCustomer.LastUpdatedBy}\"";
 
-            int rowsAffected = DBHelper.UpdateRecord("customer", insertValues, $"customerId = {newCustomer.CustomerId}");
+            int rowsAffected = DBHelper.UpdateRecord("customer", insertValues, $"customerId = {newCustomer.Id}");
 
             // Check Rows Affected to see if the record saved correctly
             if(rowsAffected > 0) {
                 // Success! Return to the HomeForm by triggering the FormSaved event (so HomeForm reloads its data from the Database)
                 MessageBox.Show($"{rowsAffected} record(s) saved! Retuning to Home Form.");
-                EventLogger.LogUnspecifiedEntry($"{formOwner} updated customer with Id {newCustomer.CustomerId}");
+                EventLogger.LogUnspecifiedEntry($"{formOwner} updated customer with Id {newCustomer.Id}");
                 OnFormSaved();
             }
             else {

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AlexJones_SchedulingApp.Models;
 
-namespace AlexJones_SchedulingApp 
+namespace AlexJones_SchedulingApp
 {
     public static class EventLogger {
         private static string filename = "logs.txt";

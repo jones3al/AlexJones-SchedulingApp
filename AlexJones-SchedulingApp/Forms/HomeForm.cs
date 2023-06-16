@@ -419,62 +419,62 @@ namespace AlexJones_SchedulingApp
         }
         private void OnNewCustomerMenuItemSelected(object sender, EventArgs e) 
         {
-           // NewCustomerForm newCustomerForm = new NewCustomerForm(activeUser);
-            //newCustomerForm.FormSaved += OnFormSaved;
-           // newCustomerForm.ShowDialog();
+           NewCustomerForm newCustomerForm = new NewCustomerForm(activeUser);
+           newCustomerForm.FormSaved += OnFormSaved;
+           newCustomerForm.ShowDialog();
         }
         private void OnModifyCustomerMenuItemSelected(object sender, EventArgs e) 
         {
-            //SelectCustomerForm selectCustomerForm = new SelectCustomerForm(activeUser);
-            //selectCustomerForm.FormClosing += OnSelectFormClosing;
-            //selectCustomerForm.ShowDialog();
+           SelectCustomerForm selectCustomerForm = new SelectCustomerForm(activeUser);
+           selectCustomerForm.FormClosing += OnSelectFormClosing;
+           selectCustomerForm.ShowDialog();
         }
         private void OnNewAddressMenuItemSelected(object sender, EventArgs e) 
         {
-            //NewAddressForm newAddressForm = new NewAddressForm(activeUser);
-            //newAddressForm.FormSaved += OnFormSaved;
-            //newAddressForm.ShowDialog();
+            NewAddressForm newAddressForm = new NewAddressForm(activeUser);
+            newAddressForm.FormSaved += OnFormSaved;
+            newAddressForm.ShowDialog();
         }
         private void OnModifyAddressMenuItemSelected(object sender, EventArgs e) 
         {
-            //SelectAddressForm selectAddressForm = new SelectAddressForm(activeUser);
-            //selectAddressForm.FormClosing += OnSelectFormClosing;
-            //selectAddressForm.ShowDialog();
+            SelectAddressForm selectAddressForm = new SelectAddressForm(activeUser);
+            selectAddressForm.FormClosing += OnSelectFormClosing;
+            selectAddressForm.ShowDialog();
         }
         private void OnNewCityMenuItemSelected(object sender, EventArgs e) 
         {
-            //NewCityForm newCityForm = new NewCityForm(activeUser);
-            //newCityForm.FormSaved += OnFormSaved;
-            //newCityForm.ShowDialog();
+            NewCityForm newCityForm = new NewCityForm(activeUser);
+            newCityForm.FormSaved += OnFormSaved;
+            newCityForm.ShowDialog();
         }
         private void OnModifyCityMenuItemSelected(object sender, EventArgs e) 
         {
-           // SelectCityForm selectCityForm = new SelectCityForm(activeUser);
-            //selectCityForm.FormClosing += OnSelectFormClosing;
-            //selectCityForm.ShowDialog();
+           SelectCityForm selectCityForm = new SelectCityForm(activeUser);
+           selectCityForm.FormClosing += OnSelectFormClosing;
+           selectCityForm.ShowDialog();
         }
         private void OnNewCountryMenuItemSelected(object sender, EventArgs e)
         {
-            //NewCountryForm newCountryForm = new NewCountryForm(activeUser);
-            //newCountryForm.FormSaved += OnFormSaved;
-            //newCountryForm.ShowDialog();
+            NewCountryForm newCountryForm = new NewCountryForm(activeUser);
+            newCountryForm.FormSaved += OnFormSaved;
+            newCountryForm.ShowDialog();
         }
         private void OnModifyCountryMenuItemsSelected(object sender, EventArgs e) 
         {
-            //SelectCountryForm selectCountryForm = new SelectCountryForm(activeUser);
-            //selectCountryForm.FormClosing += OnSelectFormClosing;
-            //selectCountryForm.ShowDialog();
+            SelectCountryForm selectCountryForm = new SelectCountryForm(activeUser);
+            selectCountryForm.FormClosing += OnSelectFormClosing;
+            selectCountryForm.ShowDialog();
         }
 
         private void OnScheduleByTypeReportMenuItemSelected(object sender, EventArgs e) 
         {
-           // ReportByTypeMonthForm reportByTypeMonthForm = new ReportByTypeMonthForm();
-            //reportByTypeMonthForm.ShowDialog();
+           ReportByTypeMonthForm reportByTypeMonthForm = new ReportByTypeMonthForm();
+           reportByTypeMonthForm.ShowDialog();
         }
         private void OnScheduleByUserReportMenuItemSelected(object sender, EventArgs e) 
         {
-           // ScheduleByUserForm scheduleByUserForm = new ScheduleByUserForm();
-            //scheduleByUserForm.ShowDialog();
+           ScheduleByUserForm scheduleByUserForm = new ScheduleByUserForm();
+           scheduleByUserForm.ShowDialog();
         }
         private void OnActiveCustomersReportMenuItemSelected(object sender, EventArgs e) 
         {

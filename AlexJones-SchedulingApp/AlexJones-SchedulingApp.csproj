@@ -96,6 +96,90 @@
     <Compile Include="Exceptions\AppointmentOverlapException.cs" />
     <Compile Include="Exceptions\AppointmentTimesInvalidException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Forms\Customer\ModifyCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\ModifyCustomerForm.designer.cs">
+      <DependentUpon>ModifyCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Address\ModifyAddressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Address\ModifyAddressForm.Designer.cs">
+      <DependentUpon>ModifyAddressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\City\ModifyCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\City\ModifyCityForm.Designer.cs">
+      <DependentUpon>ModifyCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Country\ModifyCountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Country\ModifyCountryForm.Designer.cs">
+      <DependentUpon>ModifyCountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Address\NewAddressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Address\NewAddressForm.Designer.cs">
+      <DependentUpon>NewAddressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\City\NewCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\City\NewCityForm.Designer.cs">
+      <DependentUpon>NewCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Country\NewCountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Country\NewCountryForm.Designer.cs">
+      <DependentUpon>NewCountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customer\NewCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\NewCustomerForm.Designer.cs">
+      <DependentUpon>NewCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Address\SelectAddressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Address\SelectAddressForm.Designer.cs">
+      <DependentUpon>SelectAddressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\City\SelectCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\City\SelectCityForm.Designer.cs">
+      <DependentUpon>SelectCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Country\SelectCountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Country\SelectCountryForm.Designer.cs">
+      <DependentUpon>SelectCountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customer\SelectCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\SelectCustomerForm.Designer.cs">
+      <DependentUpon>SelectCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportByTypeMonthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportByTypeMonthForm.Designer.cs">
+      <DependentUpon>ReportByTypeMonthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ScheduleByUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ScheduleByUserForm.Designer.cs">
+      <DependentUpon>ScheduleByUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\City.cs" />
@@ -140,11 +224,53 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="Forms\Customer\ModifyCustomerForm.resx">
+      <DependentUpon>ModifyCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Address\ModifyAddressForm.resx">
+      <DependentUpon>ModifyAddressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\City\ModifyCityForm.resx">
+      <DependentUpon>ModifyCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Country\ModifyCountryForm.resx">
+      <DependentUpon>ModifyCountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Address\NewAddressForm.resx">
+      <DependentUpon>NewAddressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\City\NewCityForm.resx">
+      <DependentUpon>NewCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Country\NewCountryForm.resx">
+      <DependentUpon>NewCountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\NewCustomerForm.resx">
+      <DependentUpon>NewCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Address\SelectAddressForm.resx">
+      <DependentUpon>SelectAddressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\City\SelectCityForm.resx">
+      <DependentUpon>SelectCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Country\SelectCountryForm.resx">
+      <DependentUpon>SelectCountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\SelectCustomerForm.resx">
+      <DependentUpon>SelectCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ReportByTypeMonthForm.resx">
+      <DependentUpon>ReportByTypeMonthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ScheduleByUserForm.resx">
+      <DependentUpon>ScheduleByUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -179,9 +305,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Address\" />
-    <Folder Include="Forms\Customer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
