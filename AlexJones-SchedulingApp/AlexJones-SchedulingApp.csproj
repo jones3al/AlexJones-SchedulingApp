@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>AlexJones_SchedulingApp</RootNamespace>
     <AssemblyName>AlexJones-SchedulingApp</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -87,26 +87,190 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\DBConnection.cs" />
-    <Compile Include="Screens\Dashboard.cs">
+    <Compile Include="AppointmentListing.cs" />
+    <Compile Include="Classes\EventLogger.cs" />
+    <Compile Include="Database\DBHelper.cs" />
+    <Compile Include="EventLogger.cs" />
+    <Compile Include="Events\SelectFormEventArgs.cs" />
+    <Compile Include="Exceptions\AppointmentOutsideBusinessHoursException.cs" />
+    <Compile Include="Exceptions\AppointmentOverlapException.cs" />
+    <Compile Include="Exceptions\AppointmentTimesInvalidException.cs" />
+    <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Forms\Customer\ModifyCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Dashboard.Designer.cs">
-      <DependentUpon>Dashboard.cs</DependentUpon>
+    <Compile Include="Forms\Customer\ModifyCustomerForm.designer.cs">
+      <DependentUpon>ModifyCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Login.cs">
+    <Compile Include="Forms\Address\ModifyAddressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Login.Designer.cs">
+    <Compile Include="Forms\Address\ModifyAddressForm.Designer.cs">
+      <DependentUpon>ModifyAddressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\City\ModifyCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\City\ModifyCityForm.Designer.cs">
+      <DependentUpon>ModifyCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Country\ModifyCountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Country\ModifyCountryForm.Designer.cs">
+      <DependentUpon>ModifyCountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Address\NewAddressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Address\NewAddressForm.Designer.cs">
+      <DependentUpon>NewAddressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\City\NewCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\City\NewCityForm.Designer.cs">
+      <DependentUpon>NewCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Country\NewCountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Country\NewCountryForm.Designer.cs">
+      <DependentUpon>NewCountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customer\NewCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\NewCustomerForm.Designer.cs">
+      <DependentUpon>NewCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Address\SelectAddressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Address\SelectAddressForm.Designer.cs">
+      <DependentUpon>SelectAddressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\City\SelectCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\City\SelectCityForm.Designer.cs">
+      <DependentUpon>SelectCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Country\SelectCountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Country\SelectCountryForm.Designer.cs">
+      <DependentUpon>SelectCountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customer\SelectCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\SelectCustomerForm.Designer.cs">
+      <DependentUpon>SelectCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportByTypeMonthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportByTypeMonthForm.Designer.cs">
+      <DependentUpon>ReportByTypeMonthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ScheduleByUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ScheduleByUserForm.Designer.cs">
+      <DependentUpon>ScheduleByUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Forms\HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Screens\Dashboard.resx">
-      <DependentUpon>Dashboard.cs</DependentUpon>
+    <Compile Include="Events\UserLoggedInEventArgs.cs" />
+    <Compile Include="Forms\Appointment\ModifyAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Appointment\ModifyAppointmentForm.Designer.cs">
+      <DependentUpon>ModifyAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Appointment\NewAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Appointment\NewAppointmentForm.Designer.cs">
+      <DependentUpon>NewAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SaveableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Appointment\SelectAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Appointment\SelectAppointmentForm.Designer.cs">
+      <DependentUpon>SelectAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="Forms\Customer\ModifyCustomerForm.resx">
+      <DependentUpon>ModifyCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Login.resx">
+    <EmbeddedResource Include="Forms\HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Address\ModifyAddressForm.resx">
+      <DependentUpon>ModifyAddressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\City\ModifyCityForm.resx">
+      <DependentUpon>ModifyCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Country\ModifyCountryForm.resx">
+      <DependentUpon>ModifyCountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Address\NewAddressForm.resx">
+      <DependentUpon>NewAddressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\City\NewCityForm.resx">
+      <DependentUpon>NewCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Country\NewCountryForm.resx">
+      <DependentUpon>NewCountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\NewCustomerForm.resx">
+      <DependentUpon>NewCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Address\SelectAddressForm.resx">
+      <DependentUpon>SelectAddressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\City\SelectCityForm.resx">
+      <DependentUpon>SelectCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Country\SelectCountryForm.resx">
+      <DependentUpon>SelectCountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\SelectCustomerForm.resx">
+      <DependentUpon>SelectCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ReportByTypeMonthForm.resx">
+      <DependentUpon>ReportByTypeMonthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ScheduleByUserForm.resx">
+      <DependentUpon>ScheduleByUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,6 +282,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Forms\Appointment\ModifyAppointmentForm.resx">
+      <DependentUpon>ModifyAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Appointment\NewAppointmentForm.resx">
+      <DependentUpon>NewAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Appointment\SelectAppointmentForm.resx">
+      <DependentUpon>SelectAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -132,8 +305,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

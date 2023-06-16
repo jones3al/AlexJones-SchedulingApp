@@ -1,34 +1,59 @@
-﻿using AlexJones_SchedulingApp.Classes;
-using AlexJones_SchedulingApp.Database;
+﻿using AlexJones_SchedulingApp.Database;
 using AlexJones_SchedulingApp.Models;
 using AlexJones_SchedulingApp.Exceptions;
-using AlexJones_SchedulingApp.Properties;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Globalization;
 using System.Windows.Forms;
-
 
 namespace AlexJones_SchedulingApp
 {
     public partial class LoginForm : Form
     {
         public event EventHandler<UserLoggedInEventArgs> UserLoggedIn;
-        
+        public string loginSuccess = "Login Successful";
+        public string wrongPassword = "Password does not match.";
+        public string wrongUsername = "User Account does not exist.";
+
+
         public LoginForm()
         {
             InitializeComponent();
 
+            //supports English or Spanish (LCID == 1034)
+            SetFormTextByLanguage(CultureInfo.CurrentUICulture.LCID);
+            //SetFormTextByLanguage(1033);
+
             Loginbutton.Enabled = false;
+
+            Usernametextbox.TextChanged += LoginFieldsUpdated;
+            Passwordtextbox.TextChanged += LoginFieldsUpdated;
 
             
 
         }
 
+
         #region Functions
 
-        private void ValidateFields()
+        private void SetFormTextByLanguage(int LCId)
+        {
+            if (LCId == 1034)
+            {
+                Text= "Formulario de Inicio de Sesión";
+                Usernametextbox.Text = "Nombre de Usuario";
+                Passwordtextbox.Text = "Contraseña";
+                Loginbutton.Text = "Acceso";
+                LoginPageTitle.Text = "Acceso";
+                loginSuccess = "Acceso Exitoso";
+                wrongPassword = "La contraseña no coinciden.";
+                wrongUsername = "La cuenta de usuario no existe.";
+
+
+            }
+        }
+
+        private void ValidateLoginFields()
         {
             bool isFormValid = true;
 
@@ -58,7 +83,7 @@ namespace AlexJones_SchedulingApp
         }
         private void SuccessfulLogin(User user)
         {
-            MessageBox.Show("Login Successful");
+            MessageBox.Show(loginSuccess);
             EventLogger.LogSuccessfulLogin(user);
             UserLoggedIn?.Invoke(null, new UserLoggedInEventArgs(user));
             Close();
@@ -86,18 +111,23 @@ namespace AlexJones_SchedulingApp
                     {
                         //username matches but password doesnt. Throw exception
                         EventLogger.LogUnsuccessfulLogin(Usernametextbox.Text);
-                        throw new InvalidLoginException("Password does not match.");
+                        throw new InvalidLoginException(wrongPassword);
                     }
                 }
 
                 //no username found. Throw exception
                 EventLogger.LogUnsuccessfulLogin(Usernametextbox.Text);
-                throw new InvalidLoginException("User Account doe not exist.");
+                throw new InvalidLoginException(wrongUsername);
             }
             catch(InvalidLoginException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void LoginFieldsUpdated(object sender, EventArgs e)
+        {
+            ValidateLoginFields();
         }
 
         #endregion

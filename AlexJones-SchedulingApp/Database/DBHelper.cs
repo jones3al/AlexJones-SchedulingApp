@@ -3,10 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.Common;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AlexJones_SchedulingApp.Database
@@ -30,7 +27,6 @@ namespace AlexJones_SchedulingApp.Database
                 // open connection
                 Connection.Open();
 
-                MessageBox.Show("You are connected to Database");
             }
             catch (MySqlException ex)
             {
@@ -64,6 +60,8 @@ namespace AlexJones_SchedulingApp.Database
         // Inserts new record into specified TABLE using the provided VALUES
         public static int InsertNewRecord(string table, string values)
         {
+            CloseConnection();
+            StartConnection();
             // Build Query to run
             StringBuilder insertQueryBuilder = new StringBuilder();
             insertQueryBuilder.Append($"INSERT INTO {table} VALUES ({values})");
@@ -73,6 +71,7 @@ namespace AlexJones_SchedulingApp.Database
 
             try
             {
+
                 return insertCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -80,11 +79,17 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return -1;
             }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         // Update MySql TABLE with provided QUERY. Returns number of rows affected.
         public static int UpdateRecord(string table, string values, string where = "")
         {
+            CloseConnection();
+            StartConnection();
             StringBuilder updateQueryBuilder = new StringBuilder();
             updateQueryBuilder.Append($"UPDATE {table} SET {values}");
             if (where != "")
@@ -102,6 +107,7 @@ namespace AlexJones_SchedulingApp.Database
 
             try
             {
+                StartConnection();
                 return updateCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -109,12 +115,17 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return -1;
             }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         // Removes records from specified TABLE using the provided WHERE filter
         public static int DeleteRecord(string table, string where)
         {
-
+            CloseConnection();
+            StartConnection();
             StringBuilder deleteQueryBuilder = new StringBuilder();
             deleteQueryBuilder.Append($"DELETE FROM {table} WHERE {where};");
 
@@ -125,12 +136,17 @@ namespace AlexJones_SchedulingApp.Database
             // Attempt to run the query against the database, and return the number of rows affected
             try
             {
+                
                 return deleteCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 return -1;
+            }
+            finally
+            {
+                CloseConnection();
             }
 
         }
@@ -140,6 +156,8 @@ namespace AlexJones_SchedulingApp.Database
         // Retrieves most current list of records in USER table
         public static List<User> GetAllUsers()
         {
+            CloseConnection();
+            StartConnection();
             List<User> allUsers = new List<User>();
 
             string allUsersQuery = "SELECT * FROM user";
@@ -147,6 +165,7 @@ namespace AlexJones_SchedulingApp.Database
 
             try
             {
+                
                 MySqlDataReader reader = selectAllUsersCommmand.ExecuteReader();
 
                 while (reader.Read())
@@ -162,11 +181,14 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            finally { CloseConnection(); }
         }
 
-        // Retrieves a user from User table using provided ID to select
+        // Retrieves a user from User table using provided Id to select
         public static User GetUserById(int userId)
         {
+            CloseConnection();
+            StartConnection();
             string selectUserQuery = $"SELECT * FROM user WHERE userId = {userId}";
             MySqlCommand selectUsersCOmmand = new MySqlCommand(selectUserQuery, Connection);
 
@@ -187,11 +209,14 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            finally { CloseConnection(); }
         }
 
         // Retrieves a user from User table using the provided Username
         public static User GetUserByName(string username)
         {
+            CloseConnection();
+            StartConnection();
             string selectUsersQuery = $"SELECT * FROM user WHERE userName = \"{username}\"";
             MySqlCommand selectAllUsersCommand = new MySqlCommand(selectUsersQuery, Connection);
 
@@ -213,11 +238,14 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            finally { CloseConnection(); }
         }
 
         // Retrieves most current list of records in Appointment table
         public static List<Appointment> GetAllAppointments()
         {
+            CloseConnection();
+            StartConnection();
             List<Appointment> allAppointments = new List<Appointment>();
 
             string allAppointmentsQuery = "SELECT * FROM appointment";
@@ -243,12 +271,18 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            finally
+            {
+                CloseConnection();  
+            }
         }
 
-        // Retrieves an Appointment from APPOINTMENT table using the provided ID to select
+        // Retrieves an Appointment from APPOINTMENT table using the provided Id to select
 
         public static Appointment GetAppointmentById(int id)
         {
+            CloseConnection();
+            StartConnection();
             string selectAppointmentsQuery = $"SELECT * FROM appointment WHERE appointmentId = {id}";
             MySqlCommand selectAllAppointmentsCommand = new MySqlCommand(selectAppointmentsQuery, Connection);
 
@@ -271,6 +305,7 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            finally { CloseConnection(); }
         }
 
 
@@ -278,6 +313,8 @@ namespace AlexJones_SchedulingApp.Database
 
         public static List<Customer> GetAllCustomers()
         {
+            CloseConnection();
+            StartConnection();
             List<Customer> allCustomers = new List<Customer>();
 
             string allCustomersQuery = "SELECT * FROM customer";
@@ -303,13 +340,15 @@ namespace AlexJones_SchedulingApp.Database
                 MessageBox.Show(ex.Message);
                 return null;
             }
+            finally { CloseConnection(); }  
         }
 
-        // Retrieves Record for a Specific Customer from CUSTOMER table using the specified ID
+        // Retrieves Record for a Specific Customer from CUSTOMER table using the specified Id
 
         public static Customer GetCustomerById(int id)
         {
-
+            CloseConnection();
+            StartConnection();
             string selectCustomersQuery = $"SELECT * FROM customer WHERE customerId = {id}";
             MySqlCommand selectCustomersCommand = new MySqlCommand(selectCustomersQuery, Connection);
 
@@ -338,6 +377,8 @@ namespace AlexJones_SchedulingApp.Database
 
         public static List<Address> GetAllAddresses()
         {
+            CloseConnection();
+            StartConnection();
             List<Address> allAddresses = new List<Address>();
 
             string allAddressesQuery = "SELECT * FROM address";
@@ -364,10 +405,12 @@ namespace AlexJones_SchedulingApp.Database
                 return null;
             }
         }
-        /// Retreives an Address from ADDRESS table using the provided ID to select
+        /// Retreives an Address from ADDRESS table using the provided Id to select
 
         public static Address GetAddressById(int id)
         {
+            CloseConnection();
+            StartConnection();
             string selectAddressesQuery = $"SELECT * FROM address WHERE addressId = {id}";
             MySqlCommand selectAddressesCommand = new MySqlCommand(selectAddressesQuery, Connection);
 
@@ -396,6 +439,8 @@ namespace AlexJones_SchedulingApp.Database
 
         public static List<City> GetAllCities()
         {
+            CloseConnection();
+            StartConnection();
             List<City> allCities = new List<City>();
 
             string allCitiesQuery = "SELECT * FROM city";
@@ -422,10 +467,12 @@ namespace AlexJones_SchedulingApp.Database
             }
         }
 
-        // Retrieves Record for a Specific City from CITY table using the specified ID
+        // Retrieves Record for a Specific City from CITY table using the specified Id
 
         public static City GetCityById(int id)
         {
+            CloseConnection();
+            StartConnection();
             string selectCitiesQuery = $"SELECT * FROM city WHERE cityId = {id}";
             MySqlCommand selectCitiesCommand = new MySqlCommand(selectCitiesQuery, Connection);
 
@@ -453,6 +500,8 @@ namespace AlexJones_SchedulingApp.Database
 
         public static List<Country> GetAllCountries()
         {
+            CloseConnection();
+            StartConnection();
             List<Country> allCountries = new List<Country>();
 
             string allCountriesQuery = "SELECT * FROM country";
@@ -479,11 +528,13 @@ namespace AlexJones_SchedulingApp.Database
             }
         }
 
-        // Retrieves a Country from COUNTRY table using the provided ID to search
+        // Retrieves a Country from COUNTRY table using the provided Id to search
 
         public static Country GetCountryById(int id)
         {
 
+            CloseConnection();
+            StartConnection();
             string selectCountriesQuery = $"SELECT * FROM country WHERE countryId = {id}";
             MySqlCommand selectCountriesCommand = new MySqlCommand(selectCountriesQuery, Connection);
 
@@ -506,6 +557,138 @@ namespace AlexJones_SchedulingApp.Database
                 return null;
             }
 
+        }
+        #endregion
+
+        #region
+
+        /// Queries specified TABLE for MAX Id value, then returns that Id, incremented by 1
+
+        public static int GetNewIdFromTable(string table, string idColumnName)
+        {
+            CloseConnection();
+            StartConnection();
+            string query = $"SELECT MAX({idColumnName}) FROM {table}";
+            MySqlCommand selectCommand = new MySqlCommand(query, Connection);
+
+            try
+            {
+
+                int maxId = 9998;
+                MySqlDataReader reader = selectCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    maxId = reader.GetInt32(0);
+                }
+
+                return maxId + 1;
+            }
+            catch (MySqlException ex)
+            {
+                EventLogger.LogConnectionIssue();
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
+        public static string GetFullAddressById(int addressId)
+        {
+            CloseConnection();
+            
+            Address address = null;
+            City city = null;
+            Country country = null;
+
+            StartConnection();
+            string addressSelectQuery = $"SELECT * FROM address WHERE addressId = {addressId}";
+            MySqlCommand addressSelectCommand = new MySqlCommand(addressSelectQuery, Connection);
+
+            // Try to Pull the Address using the provided addressId
+            try
+            {
+                
+                MySqlDataReader reader = addressSelectCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    address = new Address(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetString(4), reader.GetString(5), reader.GetDateTime(6), reader.GetString(7),
+                        reader.GetDateTime(8), reader.GetString(9));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                EventLogger.LogConnectionIssue();
+                MessageBox.Show(ex.Message);
+            }
+            finally { CloseConnection(); }
+
+
+            // Try to Pull City data using the CityId pulled from the Address
+            try
+            {
+                StartConnection();
+                string citySelectQuery = $"SELECT * FROM city WHERE cityId = {address.CityId}";
+                MySqlCommand citySelectCommand = new MySqlCommand(citySelectQuery, Connection);
+
+                MySqlDataReader reader = citySelectCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    city = new City(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetDateTime(3), reader.GetString(4), reader.GetDateTime(5), reader.GetString(6));
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Address not found. Unable to load city data.");
+            }
+            catch (MySqlException ex)
+            {
+                EventLogger.LogConnectionIssue();
+                MessageBox.Show(ex.Message);
+            }
+            finally { CloseConnection(); }
+
+            // Try to Pull Country data using the countryId pulled from the City
+            try
+            {
+                StartConnection(); 
+                string countrySelectQuery = $"SELECT * FROM country WHERE countryId = {city.CountryId}";
+                MySqlCommand countrySelectCommand = new MySqlCommand(countrySelectQuery, Connection);
+
+
+
+                MySqlDataReader reader = countrySelectCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    country = new Country(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), reader.GetString(3), reader.GetDateTime(4), reader.GetString(5));
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Address not found. Unable to load country data.");
+            }
+            catch (MySqlException ex)
+            {
+                EventLogger.LogConnectionIssue();
+                MessageBox.Show(ex.Message);
+            }
+            finally { CloseConnection(); }
+
+            // Build the Full Address and Return
+            StringBuilder addressBuilder = new StringBuilder();
+            try
+            {
+                addressBuilder.Append($"{address.Address1}");
+                if (address.Address2 != "") { addressBuilder.Append($", {address.Address2}"); }
+                addressBuilder.Append("\r\n");
+                addressBuilder.Append($"{city.Name}, {country.Name}");
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Unable to load Address data to create string");
+            }
+
+            return addressBuilder.ToString();
         }
         #endregion
     }
